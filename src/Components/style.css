@@ -19,14 +19,13 @@ html{
     align-items: center;
     position: relative;
 }
-/* .header ::before{
-    content: "";
+.header ::before{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-} */
+}
 .row2{
     position: absolute;
     top: 40px;
@@ -53,7 +52,19 @@ html{
     outline: 0;
     border: 4;
     width: 350px;
+    height: 30px;
     padding: 0 0.5rem;
     font-size: 15px;
     font-weight: bold;
+    border-radius: 10px;
+}
+button {
+    outline: none;
+    border: none;
+    height: 55px;
+    width: 100px;
+    padding: 0 0.5rem;
+    background-color: #adb5bd;
+    color: #f8f9fa;
+    border-radius: 18px;
 }
