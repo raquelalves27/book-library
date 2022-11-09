@@ -14,10 +14,10 @@ const Main = () => {
               <h2>find Search book</h2>
               <div className="search">
                 <input type="text" placeholder="enter name book" />
-                <button>
-                <BiSearchAlt/>
-                </button>
               </div>
+              <button>
+               Pesquisar  <BiSearchAlt/>
+              </button>
             </div>
           </div>
         </div>
