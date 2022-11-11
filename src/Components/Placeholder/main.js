@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import Card from "../Card/card";
-import axios from "axios";
+import api from "../../Services/api"
+
 
 const Main = () => {
-  const[search, setSearch] = useState("");
-  const searchBook = (evt)=>{
+  const [bookData,setData]=useState([])
+  const[search, setSearch] = useState("")
+  const searchBook = async (evt)=>{
     if(evt.key === "Enter")
     {
-      console.log("hello")
+      try {
+     const res = await api.get(`/volumes?q=${search}=&key=${process.env.REACT_APP_KEY_API}&maxResults=20`)
+     setData(res.data.items)
+      } catch (error) {
+      console.log(error);
     }
   }
+}
   return (
     <>
       <div className="header">
@@ -28,7 +35,7 @@ const Main = () => {
         </div>
       </div>
       <div className="container">
-        <Card />
+        <Card  book={bookData}/>
       </div>
     </>
   );

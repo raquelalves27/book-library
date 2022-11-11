@@ -42,3 +42,7 @@
     padding: 0.2rem;
 
 }
+.card::hover{
+    transform: scale(0.9);
+    background-color: azure;
+}

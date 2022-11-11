@@ -1,8 +1,8 @@
 import React from "react";
-import Main from "./Components/Placeholder/Main";
+import Main from "./Components/Placeholder/main";
 import "./Components/Placeholder/style.css";
-import "./Components/Card/style.css"
-
+import "./Components/Card/style.css";
+import "./Components/modal/style.css";
 
 function App() {
   return (
