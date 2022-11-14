@@ -1,28 +1,24 @@
 import React, { useState } from "react";
 import Modal from "../modal/modal";
+import "../modal/style.css";
 
 const Card = ({ book }) => {
-  const [show, setShow] = useState(false);
-  const [bookItem, setItem] = useState();
-  const thumbnail =
-    book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.smallThumbnail;
-  const amount = book.saleInfo.listPrice && book.saleInfo.listPrice.amount;
-  // if(thumbnail !== undefined && amount !== undefined)
-
   return (
     <>
       <div
         className="card"
-        onClick={() => {
-          setShow(true);
-          setItem(book);
-        }}
+        onClick={() => {}}
       >
-        <img src={thumbnail} alt="" />
+        <img src={book.imageLinks} alt="" />
         <div className="bottom">
-          <h3 className="title">{book.volumeInfo.title}</h3>
-          <p className="amount">&#83377;{amount}</p>
-          <Modal />
+          <h3 className="title">{book.title}</h3>
+          <p className="amount">
+            {new Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(book.listPrince)}
+          </p>
+          <Modal book={book} />
         </div>
       </div>
     </>

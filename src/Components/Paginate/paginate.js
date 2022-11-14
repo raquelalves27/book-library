@@ -6,20 +6,19 @@ import Card from "../Card/card";
 // const items = [...Array(33).keys()];
 
 export function Items({ currentItems }) {
-  console.log(currentItems, "file");
-
+console.log(currentItems, "raquel")
   return (
     <div className="items">
       {currentItems &&
         currentItems.map(
-          (item) =>
-            item.saleInfo && <Card book={item} />
+          (book) =>
+            book.title && <Card book={book} />
         )}
     </div>
   );
 }
 
-export default function PaginatedItems({ itemsPerPage, dados }) {
+export default function PaginatedItems({ itemsPerPage, books }) {
   // We start with an empty list of items.
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
@@ -27,19 +26,17 @@ export default function PaginatedItems({ itemsPerPage, dados }) {
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
  
-  const items = dados  || [];
-
   useEffect(() => {
     // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(items.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(items.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, dados]);
+    setCurrentItems(books.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(books.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, books]);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
+    const newOffset = (event.selected * itemsPerPage) % books.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );

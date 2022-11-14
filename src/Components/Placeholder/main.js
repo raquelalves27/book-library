@@ -4,7 +4,7 @@ import api from "../../Services/api";
 import PaginatedItems from "../Paginate/paginate";
 
 const Main = () => {
-  const [bookData, setData] = useState([]);
+  const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
 
 
@@ -14,17 +14,27 @@ const Main = () => {
         const res = await api.get(
           `/volumes?q=${search}=&key=${process.env.REACT_APP_KEY_API}&maxResults=20`
         );
-        setData(res.data.items);
+
+        const books = res.data.items.map(book => {
+          return {
+            title: book.volumeInfo.title,
+            author: book.volumeInfo.authors,
+            description: book.volumeInfo.description || "não foi possível encontrar",
+            listPrince: book.saleInfo.listPrice && book.saleInfo.listPrice.amount || 0,
+            imageLinks: book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail
+          }
+        })
+        setBooks(books);
       } catch (error) {
         console.log(error);
       }
     }
   };
   const send = async() => {
-    const res = await api.get(
-      `/volumes?q=${search}=&key=${process.env.REACT_APP_KEY_API}&maxResults=20`
-    );
-    setData(res.data.items);
+    const evt = {
+      key: "Enter"
+    }
+    searchBook(evt)
   }
 
   useEffect(()=>{
@@ -38,10 +48,10 @@ const Main = () => {
     <>
       <div className="header">
         <div className="row1">
-          <h1>Teste onde ficaria</h1>
+          <img src= "https://www.fariasbrito.com.br/assets/imgs/logo-colorida.webp" />
         </div>
         <div className="row2">
-          <h2>find Search book</h2>
+          <h2>Olá aluno, encontre seu livro!</h2>
           <div className="search">
             <input
               type="text"
@@ -57,7 +67,7 @@ const Main = () => {
         </div>
       </div>
       <div className="container">
-        { bookData.length && <PaginatedItems itemsPerPage={8} dados={bookData} />}
+        { books.length && <PaginatedItems itemsPerPage={8} books={books} />}
       </div>
     </>
   );

@@ -6,15 +6,16 @@ const customStyles = {
   content: {
     top: '50%',
     left: '50%',
-    right: 'auto',
+    right: 'auto%',
     bottom: 'auto',
-    marginRight: '-50%',
+    marginRight: '10%',
     transform: 'translate(-50%, -50%)',
   },
 };
 
 
-export default function App() {
+export default function App({ book }) {
+
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -24,7 +25,7 @@ export default function App() {
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
+    subtitle.style.color = '#495057';
   }
 
   function closeModal() {
@@ -33,7 +34,7 @@ export default function App() {
 
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
+      <button onClick={openModal}>Saiba Mais</button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -41,12 +42,13 @@ export default function App() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+        <h1 ref={(_subtitle) => (subtitle = _subtitle)}>{book.title}</h1>
+        <div>
+          <h6>{book.author}</h6><br />
+          <p>{book.description}</p>
+          </div>
         <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
       </Modal>
     </div>
   );
 }
-
-// ReactDOM.render(<App />, appElement);
