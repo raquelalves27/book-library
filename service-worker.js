@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/raquelalves27/book-library/precache-manifest.117fa76a509f2b35f1cbe55078674d00.js"
+  "/book-library/precache-manifest.562f0fdce70b092e9a4da133d83792ae.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/raquelalves27/book-library/index.html", {
+workbox.routing.registerNavigationRoute("/book-library/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
