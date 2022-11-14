@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Card from "../Card/card";
 
-// const items = [...Array(33).keys()];
-
 export function Items({ currentItems }) {
 console.log(currentItems, "raquel")
   return (
